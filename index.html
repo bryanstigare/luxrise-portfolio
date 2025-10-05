@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lux Rise - Desenvolvimento Web</title>
+    <title>Lux Rise - Desenvolvimento Web & Automação</title>
     <style>
         * {
             margin: 0;
@@ -12,420 +12,462 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: #0a0a0a;
-        }
-
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            overflow-x: hidden;
         }
 
         .hero {
             min-height: 100vh;
+            background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .circle-1 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #2a2a2a 0%, #1a1a1a 100%);
+            top: 10%;
+            left: 8%;
+            opacity: 0.8;
+        }
+
+        .circle-inner {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: #4a4a4a;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+        }
+
+        .wave-path {
+            fill: #1a1a1a;
+        }
+
+        .wave-2 {
+            opacity: 0.5;
+            height: 45%;
+        }
+
+        .wave-2 .wave-path {
+            fill: #2a2a2a;
+        }
+
+        .wave-3 {
+            opacity: 0.3;
+            height: 50%;
+        }
+
+        .wave-3 .wave-path {
+            fill: #3a3a3a;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
             text-align: center;
-            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
             color: white;
-            margin-top: 80px;
+            padding: 2rem;
+            max-width: 900px;
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
 
-        .hero-content p {
+        .hero p {
             font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s backwards;
+            color: #aaa;
+            margin-bottom: 3rem;
+            font-weight: 300;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 1rem 3rem;
+            background: white;
+            color: #000;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s ease 0.4s backwards;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            background: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+        }
+
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
         }
 
         .about {
-            background: #1a1a1a;
-            color: white;
+            background: #f8f8f8;
         }
 
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: #667eea;
-        }
-
-        .about-content {
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+            gap: 4rem;
+            align-items: start;
         }
 
         .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             line-height: 1.8;
+            color: #555;
         }
 
         .services {
-            background: #0f0f0f;
-            color: white;
+            background: white;
         }
 
-        .services h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: #667eea;
-        }
-
-        .service-grid {
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
         }
 
         .service-card {
-            background: #1a1a1a;
-            padding: 2rem;
-            border-radius: 15px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid transparent;
+            padding: 2rem;
+            transition: transform 0.3s;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            border-color: #667eea;
         }
 
         .service-icon {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .service-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #667eea;
+            font-weight: 400;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .service-features {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .service-features li {
+            color: #555;
+            margin-bottom: 0.5rem;
+            list-style: none;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #000;
+            font-weight: bold;
         }
 
         .portfolio {
-            background: #1a1a1a;
-            color: white;
-        }
-
-        .portfolio h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: #667eea;
+            background: #f8f8f8;
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
         .portfolio-item {
-            background: #0f0f0f;
-            border-radius: 15px;
+            background: white;
             overflow: hidden;
             transition: transform 0.3s;
-            border: 2px solid #2a2a2a;
         }
 
         .portfolio-item:hover {
-            transform: scale(1.05);
-            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         .portfolio-image {
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 250px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
+            font-size: 4rem;
         }
 
         .portfolio-info {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
         .portfolio-info h3 {
             margin-bottom: 0.5rem;
-            color: #667eea;
+            font-weight: 400;
+        }
+
+        .portfolio-info p {
+            color: #666;
+            font-size: 0.95rem;
         }
 
         .contact {
-            background: #0f0f0f;
+            background: #000;
             color: white;
             text-align: center;
         }
 
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #667eea;
+        .contact .section-title {
+            color: white;
         }
 
-        .contact p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+        .contact .section-subtitle {
+            color: #aaa;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
 
         .social-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
             padding: 1rem 2rem;
-            background: #1a1a1a;
-            color: white;
+            background: white;
+            color: #000;
             text-decoration: none;
-            border-radius: 50px;
-            transition: transform 0.3s, background 0.3s;
-            border: 2px solid #667eea;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
         .social-links a:hover {
-            transform: translateY(-5px);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f0f0f0;
+            transform: translateY(-3px);
         }
 
         footer {
             background: #000;
-            color: white;
+            color: #666;
             text-align: center;
             padding: 2rem;
+            border-top: 1px solid #222;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 {
+        @media (max-width: 968px) {
+            .hero h1 {
                 font-size: 2.5rem;
             }
 
-            .about-content {
+            .about-grid,
+            .services-grid,
+            .portfolio-grid {
                 grid-template-columns: 1fr;
             }
 
-            .nav-links {
-                display: none;
-            }
-
-            section {
-                padding: 3rem 1rem;
+            .social-links {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <span>LR</span>
-                <span>Lux Rise</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#portfolio">Portfólio</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <section class="hero">
+        <div class="hero-background">
+            <div class="circle circle-1">
+                <div class="circle-inner"></div>
+            </div>
+            <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path class="wave-path" d="M0,50 Q300,80 600,50 T1200,50 L1200,120 L0,120 Z"></path>
+            </svg>
+            <svg class="wave wave-2" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path class="wave-path" d="M0,60 Q300,30 600,60 T1200,60 L1200,120 L0,120 Z"></path>
+            </svg>
+            <svg class="wave wave-3" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path class="wave-path" d="M0,70 Q300,100 600,70 T1200,70 L1200,120 L0,120 Z"></path>
+            </svg>
+        </div>
         <div class="hero-content">
-            <h1>Transformo Ideias em Sites Profissionais</h1>
-            <p>💎 Mindset + Estratégia = Resultado</p>
-            <a href="#contato" class="cta-button">Vamos Crescer Juntos!</a>
+            <h1>Transformo suas ideias em sites de sucesso</h1>
+            <p>Landing pages e sites institucionais que destacam seu negócio online</p>
+            <a href="#servicos" class="cta-button">Explorar</a>
         </div>
     </section>
 
     <section id="sobre" class="about">
-        <h2>Sobre Mim</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Olá! Sou <strong>Bryan Stigare</strong>, desenvolvedor web focado em criar sites profissionais que geram resultados reais para negócios.</p>
-                <p>Minha missão é ajudar empreendedores e empresas a terem presença digital de qualidade, com sites modernos, responsivos e otimizados.</p>
-                <p>Acredito que mindset + estratégia = resultado, e aplico isso em cada projeto que desenvolvo.</p>
-            </div>
-            <div class="about-image">
-                <div style="width: 200px; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 5rem; color: white;">LR</div>
+        <div class="container">
+            <h2 class="section-title">Soluções Digitais Inteligentes</h2>
+            <p class="section-subtitle">Desenvolvimento web moderno com tecnologia de ponta</p>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Sou desenvolvedor web especializado em criar sites profissionais e implementar automações inteligentes usando IA.</p>
+                    <p>Trabalho com empresas que querem mais do que apenas um site bonito - querem resultados reais, economia de tempo e processos automatizados que funcionam 24/7.</p>
+                    <p>Combino design moderno com tecnologia de ponta para entregar soluções que realmente fazem diferença no dia a dia do seu negócio.</p>
+                </div>
+                <div class="about-text">
+                    <p>Minha abordagem é direta: entendo seu problema, proponho a melhor solução técnica e entrego com qualidade.</p>
+                    <p>Seja um site completo, um chatbot inteligente ou automação de processos, meu foco é sempre entregar valor e facilitar sua operação.</p>
+                    <p>Vamos conversar sobre como posso ajudar seu negócio a crescer com tecnologia?</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="servicos" class="services">
-        <h2>Serviços</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                <div class="service-icon">🌐</div>
-                <h3>Sites Institucionais</h3>
-                <p>Sites profissionais para empresas, com design moderno e responsivo.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🚀</div>
-                <h3>Landing Pages</h3>
-                <p>Páginas de conversão otimizadas para captar leads e gerar vendas.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📱</div>
-                <h3>Sites Responsivos</h3>
-                <p>Websites que funcionam perfeitamente em qualquer dispositivo.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⚡</div>
-                <h3>Performance</h3>
-                <p>Sites rápidos e otimizados para melhor experiência do usuário.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>Design Moderno</h3>
-                <p>Interfaces atraentes seguindo as últimas tendências do mercado.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3>Manutenção</h3>
-                <p>Suporte contínuo para manter seu site sempre atualizado.</p>
+        <div class="container">
+            <h2 class="section-title">Serviços</h2>
+            <p class="section-subtitle">Três formas de transformar seu negócio digitalmente</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Sites Profissionais</h3>
+                    <p>Desenvolvimento de sites modernos, responsivos e otimizados. Design profissional que converte visitantes em clientes.</p>
+                    <ul class="service-features">
+                        <li>Sites institucionais</li>
+                        <li>Landing pages de conversão</li>
+                        <li>Portfólios profissionais</li>
+                        <li>Design responsivo</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>Sites com IA Integrada</h3>
+                    <p>Websites com automação e inteligência artificial integrada. Atendimento automatizado e fluxos personalizados.</p>
+                    <ul class="service-features">
+                        <li>Chatbots inteligentes</li>
+                        <li>Automação de atendimento</li>
+                        <li>Integração WhatsApp</li>
+                        <li>Respostas automáticas</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Automações & Integrações</h3>
+                    <p>Integro inteligência artificial em seus sistemas existentes. Automatize processos repetitivos.</p>
+                    <ul class="service-features">
+                        <li>Bot WhatsApp com IA</li>
+                        <li>Automação de processos</li>
+                        <li>Integração de sistemas</li>
+                        <li>Fluxos personalizados</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="portfolio" class="portfolio">
-        <h2>Portfólio</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <div class="portfolio-image">🍽️</div>
-                <div class="portfolio-info">
-                    <h3>Restaurante Gourmet</h3>
-                    <p>Site institucional com cardápio digital e reservas online.</p>
+        <div class="container">
+            <h2 class="section-title">Portfólio</h2>
+            <p class="section-subtitle">Projetos desenvolvidos com excelência</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">🍽️</div>
+                    <div class="portfolio-info">
+                        <h3>Restaurante Gourmet</h3>
+                        <p>Site institucional com cardápio digital e sistema de reservas online integrado.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-image">⚖️</div>
-                <div class="portfolio-info">
-                    <h3>Escritório de Advocacia</h3>
-                    <p>Website profissional com áreas de atuação e formulário de contato.</p>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">⚖️</div>
+                    <div class="portfolio-info">
+                        <h3>Escritório de Advocacia</h3>
+                        <p>Website profissional com áreas de atuação e formulário de contato inteligente.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-image">🏋️</div>
-                <div class="portfolio-info">
-                    <h3>Academia Fitness</h3>
-                    <p>Landing page para captação de alunos com planos e horários.</p>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">🏋️</div>
+                    <div class="portfolio-info">
+                        <h3>Academia Fitness</h3>
+                        <p>Landing page para captação de alunos com chatbot automatizado.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="contato" class="contact">
-        <h2>Vamos Trabalhar Juntos?</h2>
-        <p>Pronto para transformar seu negócio com um site profissional?</p>
-        <p>Entre em contato e vamos crescer juntos! 🚀</p>
-        <div class="social-links">
-            <a href="https://instagram.com/luxrise5" target="_blank">
-                📷 Instagram
-            </a>
-            <a href="https://linktr.ee/luxrise5" target="_blank">
-                🔗 Links
-            </a>
-            <a href="https://www.workana.com" target="_blank">
-                💼 Workana
-            </a>
+        <div class="container">
+            <h2 class="section-title">Vamos Trabalhar Juntos?</h2>
+            <p class="section-subtitle">Pronto para transformar seu negócio com um site profissional?</p>
+            <div class="social-links">
+                <a href="https://instagram.com/luxrise5" target="_blank">Instagram</a>
+                <a href="https://linktr.ee/luxrise5" target="_blank">Links</a>
+                <a href="https://www.workana.com" target="_blank">Workana</a>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Lux Rise - Desenvolvimento Web. Todos os direitos reservados.</p>
+        <p>&copy; 2024 Lux Rise - Desenvolvimento Web & Automação. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
